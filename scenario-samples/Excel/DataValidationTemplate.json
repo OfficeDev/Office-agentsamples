@@ -1,0 +1,8 @@
+{
+	"Templates": [
+		{
+			"Description": "add data validation rule and remove data validation rule",
+			"SampleCodes": "Enum Excel.DataValidationOperator { between, equalTo, greaterThan, greaterThanOrEqualTo, lessThan, lessThanOrEqualTo, notBetween, notEqualTo }\n\nasync function addPositiveNumberDataValidationRule() {\n  await Excel.run(async (context) => {\n    const currentWorksheet = context.workbook.worksheets.getActiveWorksheet();\n    const range = currentWorksheet.getRange(\"A1:D4\");\n\n    // clear previous data validation rule\n    range.dataValidation.clear();\n\n    let greaterThanZeroRule = {\n      wholeNumber: {\n        formula1: 0,\n        operator: Excel.DataValidationOperator.greaterThan\n      }\n    };\n\n    range.dataValidation.rule = greaterThanZeroRule;\n\n    range.dataValidation.prompt = {\n      message: \"Please enter a positive number.\",\n      showPrompt: true,\n      title: \"Positive numbers only.\"\n    };\n\n    range.dataValidation.errorAlert = {\n      message: \"Sorry, only positive numbers are allowed\",\n      showAlert: true,\n      style: \"Stop\",\n      title: \"Negative Number Entered\"\n    };\n\n    await context.sync();\n  });\n}\n\nasync function removeDataValidatonRuleOnRange() {\n  await Excel.run(async (context) => {\n    const currentWorksheet = context.workbook.worksheets.getActiveWorksheet();\n    const range = currentWorksheet.getRange(\"A1:D4\");\n    \n    // remove data validation rule\n    range.dataValidation.clear();\n    await context.sync();\n  });\n}"
+		}
+	]
+}
