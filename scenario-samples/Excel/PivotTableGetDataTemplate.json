@@ -1,0 +1,8 @@
+{
+    "Templates": [
+        {
+            "Description": "Get data values of a pivotTable.; Get all pivoTable's names of the workbook.",
+            "SampleCodes": "// Get the data values of the first pivoTable in the current worksheet.\nasync function getPivotTableDataInWorksheet() {\n  await Excel.run(async (context) => {\n    const pivotTables = context.workbook.worksheets.getActiveWorksheet().pivotTables;\n    pivotTables.load(\"items\");\n    await context.sync();\n\n    const firstPivotTable = pivotTables.items[0];\n    firstPivotTable.load(\"layout\");\n    await context.sync();\n\n // Get the range of the pivoTable\n    const pivotLayout = firstPivotTable.layout;\n    const pivotTableRange = pivotLayout.getRange();\n    pivotTableRange.load(\"values\");\n    await context.sync();\n \n  // Get the values of the range\n    const pivotTableValues = pivotTableRange.values;\n    await context.sync();\n    console.log(\"values: \"+ pivotTableValues);\n  });\n}\n\n// Get all pivoTable's names in the workbook\nasync function getPivotTableNamesInWorkbook() {\n  await Excel.run(async (context) => {\n    // Get the names of all the PivotTables in the workbook.\n    const pivotTables = context.workbook.pivotTables;\n    pivotTables.load(\"name\");\n    await context.sync();\n\n    // Display the names in the console.\n    console.log(\"PivotTables in the workbook:\");\n    pivotTables.items.forEach((pivotTable) => {\n      console.log(`\t${pivotTable.name}`);\n    });\n  });\n}\n}"
+        }
+    ]
+}
