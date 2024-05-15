@@ -1,0 +1,9 @@
+{
+	"Templates": [
+		{
+			"Description": "Get the data source address of PivotTable.",
+			"SampleCodes": "async function getPivotTableDataSourceAddress() {\n  // This function logs the data source of a PivotTable.\n  await Excel.run(async (context) => {\n    const worksheet = context.workbook.worksheets.getItem(\"TotalPivot\");\n    const pivotTable = worksheet.pivotTables.getItem(\"All Farm Sales\");\n\n    // Retrieve the type and string representation of the data source address of the PivotTable.\n    const pivotTableDataSourceType = pivotTable.getDataSourceType();\n    const pivotTableDataSourceString = pivotTable.getDataSourceString();\n    await context.sync();\n\n    // Log the data source information.\n    console.log(\"Data source: \" + pivotTableDataSourceString.value);\n    console.log(\"Source type: \" + pivotTableDataSourceType.value);\n  });"
+		}
+	]
+}
+
