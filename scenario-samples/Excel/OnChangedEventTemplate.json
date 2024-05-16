@@ -1,0 +1,8 @@
+{
+    "Templates": [
+        {
+            "Description": "Uses the table's onChanged event of a table to detect the data changes.",
+            "SampleCodes": "async function registerChangeEventHandler() {\n  await Excel.run(async (context) => {\n    const expensesTable = context.workbook.worksheets.getActiveWorksheet().tables.getItem(\"ExpensesTable\");\n\n    // This event fires when a user edits a cell in the table.\n    expensesTable.onChanged.add(onTableChanged);\n    await context.sync();\n\n    console.log(\"Added onChanged handler\");\n  });\n}\n\nasync function onTableChanged(eventArgs: Excel.TableChangedEventArgs) {\n  await Excel.run(async (context) => {\n    const details = eventArgs.details;\n    const address = eventArgs.address;\n\n    console.log(\n      `Change at ${address}: was ${details.valueBefore}(${details.valueTypeBefore}),` +\n        ` now is ${details.valueAfter}(${details.valueTypeAfter})`\n    );\n  });\n}"
+        }
+    ]
+}

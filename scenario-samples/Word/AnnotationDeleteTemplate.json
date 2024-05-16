@@ -1,0 +1,8 @@
+{
+  "Templates": [
+    {
+      "Description": "Delete annotations.",
+      "SampleCodes": "async function deleteAnnotations() {\n  // Deletes all annotations found in the selected paragraph.\n  await Word.run(async (context) => {\n    const paragraph = context.document.getSelection().paragraphs.getFirst();\n    const annotations = paragraph.getAnnotations();\n    annotations.load(\"id\");\n\n    await context.sync();\n\n    const ids = [];\n    for (let i = 0; i < annotations.items.length; i++) {\n      const annotation = annotations.items[i];\n\n      ids.push(annotation.id);\n      annotation.delete();\n    }\n\n    await context.sync();\n\n    console.log(\"Annotations deleted:\", ids);\n  });\n}"
+    }
+  ]
+}

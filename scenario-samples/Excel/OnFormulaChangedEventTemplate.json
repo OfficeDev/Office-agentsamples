@@ -1,0 +1,8 @@
+{
+	"Templates": [
+		{
+			"Description": "Register an onFormulaChanged event handler to detect changes to formulas in the worksheet.",
+			"SampleCodes": "async function registerFormulaChangeHandler() {\n  await Excel.run(async (context) => {\n    // Retrieve the worksheet named \"Sample\".\n    let sheet = context.workbook.worksheets.getItem(\"Sample\");\n\n    // Register the formula changed event handler for this worksheet.\n    sheet.onFormulaChanged.add(formulaChangeHandler);\n    await context.sync();\n\n    console.log(\"Registered a formula changed event handler for this worksheet.\");\n  });\n}\n\nasync function formulaChangeHandler(event: Excel.WorksheetFormulaChangedEventArgs) {\n  await Excel.run(async (context) => {\n    // Retrieve details about the formula change event.\n    const cellAddress = event.formulaDetails[0].cellAddress;\n    const previousFormula = event.formulaDetails[0].previousFormula;\n    const source = event.source;\n\n    // Print out the change event details.\n    console.log(\n      `The formula in cell ${cellAddress} changed. \n      The previous formula was: ${previousFormula}. \n      The source of the change was: ${source}.`\n    );\n  });\n}"
+		}
+	]
+}

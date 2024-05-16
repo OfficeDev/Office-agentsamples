@@ -1,0 +1,8 @@
+{
+  "Templates": [
+    {
+      "Description": "Add/Insert annotation to the paragraph.",
+      "SampleCodes": "async function insertAnnotations() {\n  // Adds annotations to the selected paragraph.\n  await Word.run(async (context) => {\n    const paragraph = context.document.getSelection().paragraphs.getFirst();\n    const critique1 = {\n      colorScheme: Word.CritiqueColorScheme.red,\n      start: 1,\n      length: 3\n    };\n    const critique2 = {\n      colorScheme: Word.CritiqueColorScheme.green,\n      start: 6,\n      length: 1\n    };\n    const critique3 = {\n      colorScheme: Word.CritiqueColorScheme.blue,\n      start: 10,\n      length: 3\n    };\n    const critique4 = {\n      colorScheme: Word.CritiqueColorScheme.lavender,\n      start: 14,\n      length: 3\n    };\n    const critique5 = {\n      colorScheme: Word.CritiqueColorScheme.berry,\n      start: 18,\n      length: 10\n    };\n    const annotationSet: Word.AnnotationSet = {\n      critiques: [critique1, critique2, critique3, critique4, critique5]\n    };\n\n    const annotationIds = paragraph.insertAnnotations(annotationSet);\n\n    await context.sync();\n\n    console.log(\"Annotations inserted:\", annotationIds.value);\n  });\n}"
+    }
+  ]
+}
