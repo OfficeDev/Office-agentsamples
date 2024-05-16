@@ -1,0 +1,8 @@
+{
+  "Templates": [
+    {
+      "Description": "Imports JSON data into a table.",
+      "SampleCodes": "async function importJsonDataToTable() {\n  await Excel.run(async (context) => {\n    context.workbook.worksheets.getItemOrNullObject(\"Sample\").delete();\n    const sheet = context.workbook.worksheets.add(\"Sample\");\n\n    let expensesTable = sheet.tables.add(\"A1:D1\", true);\n    expensesTable.name = \"ExpensesTable\";\n    // The column of the Array should strictly align with the table\n    expensesTable.getHeaderRowRange().values = [[\"Date\", \"Merchant\", \"Category\", \"Amount\"]];\n	// The column of the Array should strictly align with the table\n    const newData = transactions.map((item) => [item.DATE, item.MERCHANT, item.CATEGORY, item.AMOUNT]);\n\n    expensesTable.rows.add(null, newData);\n\n    sheet.getUsedRange().format.autofitColumns();\n    sheet.getUsedRange().format.autofitRows();\n\n    sheet.activate();\n    await context.sync();\n  });\n}\n\nconst transactions = [\n  {\n    DATE: \"1/1/2017\",\n    MERCHANT: \"The Phone Company\",\n    CATEGORY: \"Communications\",\n    AMOUNT: \"$120\"\n  },\n  {\n    DATE: \"1/1/2017\",\n    MERCHANT: \"Southridge Video\",\n    CATEGORY: \"Entertainment\",\n    AMOUNT: \"$40\"\n  },\n  {\n    DATE: \"1/1/2017\",\n    MERCHANT: \"Coho Winery\",\n    CATEGORY: \"Restaurant\",\n    AMOUNT: \"$47\"\n  }\n];\n"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "Templates": [
+    {
+      "Description": "lock the field.",
+      "SampleCodes": "async function lockTheField() {\n  // Sets the first field to be locked.\n  await Word.run(async (context) => {\n    var field = context.document.getSelection().fields.getFirstOrNullObject();\n    field.load(\"locked\");\n    await context.sync();\n\n    field.locked = !field.locked;\n    await context.sync();\n	console.log(`The first field in the selection is now ${field.locked ? \"locked\" : \"unlocked\"}.`);\n    }\n  });\n}"
+    }
+  ]
+}

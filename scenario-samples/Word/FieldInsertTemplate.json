@@ -1,0 +1,8 @@
+{
+  "Templates": [
+    {
+      "Description": "Insert field.",
+      "SampleCodes": "async function insertDateField() {\n  // Inserts a Date field before selection.\n  await Word.run(async (context) => {\n    var range = context.document.getSelection().getRange();\n    const field = range.insertField(Word.InsertLocation.before, Word.FieldType.date, '\\@ \"M/d/yyyy h:mm am/pm\"', true);\n    await context.sync();\n  });\n}"
+    }
+  ]
+}
