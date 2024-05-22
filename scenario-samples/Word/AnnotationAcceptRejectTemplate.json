@@ -1,8 +1,0 @@
-{
-  "Templates": [
-    {
-      "Description": "Accept annotations; Reject annotations",
-      "SampleCodes": "async function acceptFirstAnnotation() {\n  // Accepts the first annotation found in the selected paragraph.\n  await Word.run(async (context) => {\n    const paragraph = context.document.getSelection().paragraphs.getFirst();\n    const annotations = paragraph.getAnnotations();\n    annotations.load(\"id,state,critiqueAnnotation\");\n\n    await context.sync();\n\n    for (let i = 0; i < annotations.items.length; i++) {\n      const annotation = annotations.items[i];\n\n      if (annotation.state === Word.AnnotationState.created) {\n        console.log(`Accepting ID ${annotation.id}...`);\n        annotation.critiqueAnnotation.accept();\n\n        await context.sync();\n        break;\n      }\n    }\n  });\n}\n\nasync function rejectLastAnnotation() {\n  // Rejects the last annotation found in the selected paragraph.\n  await Word.run(async (context) => {\n    const paragraph = context.document.getSelection().paragraphs.getFirst();\n    const annotations = paragraph.getAnnotations();\n    annotations.load(\"id,state,critiqueAnnotation\");\n\n    await context.sync();\n\n    for (let i = annotations.items.length - 1; i >= 0; i--) {\n      const annotation = annotations.items[i];\n\n      if (annotation.state === Word.AnnotationState.created) {\n        console.log(`Rejecting ID ${annotation.id}...`);\n        annotation.critiqueAnnotation.reject();\n\n        await context.sync();\n        break;\n      }\n    }\n  });\n}"
-    }
-  ]
-}

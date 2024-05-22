@@ -1,8 +1,0 @@
-{
-  "Templates": [
-    {
-      "Description": "delete the field.",
-      "SampleCodes": "async function deleteFirstField() {\n  // Deletes the first field in the document.\n  await Word.run(async (context) => {\n    const field = context.document.body.fields.getFirstOrNullObject();\n    field.load();\n\n    await context.sync();\n\n    if (field.isNullObject) {\n      console.log(\"This document has no fields.\");\n    } else {\n      field.delete();\n      await context.sync();\n\n      console.log(\"The first field in the document was deleted.\");\n    }\n  });\n}"
-    }
-  ]
-}
