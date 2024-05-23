@@ -1,7 +1,7 @@
 {
 	"Templates": [
 		{
-			"Description": "Saves and closes a workbook",
+			"Description": "Saves and closes.",
 			"SampleCodes": "async function saveWithPrompt() {\n  await Excel.run(async (context) => {\n    context.workbook.save(Excel.SaveBehavior.prompt);\n  });\n}\n\nasync function saveWithoutPrompt() {\n  await Excel.run(async (context) => {\n    context.workbook.save(Excel.SaveBehavior.save);\n  });\n}\n\nasync function closeWithSave() {\n  await Excel.run(async (context) => {\n    context.workbook.close(Excel.CloseBehavior.save);\n  });\n}\n\nasync function closeWithoutSave() {\n  await Excel.run(async (context) => {\n    context.workbook.close(Excel.CloseBehavior.skipSave);\n  });\n}"
 		}
 	]
