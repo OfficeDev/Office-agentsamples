@@ -1,7 +1,7 @@
  {
 	"Templates": [
 		{
-			"Description": "Insert external worksheets. Inserts worksheets from another workbook into the current workbook.",
+			"Description": "Inserts content from another file ( base64 ).",
 			"SampleCodes": "let externalWorkbook;\n\nenum WorksheetPositionType {\n      none = \"None\",\n      before = \"Before\",\n      after = \"After\",\n      beginning = \"Beginning\",\n      end = \"End\"\n}\n\nasync function getBase64() {\n  // Retrieve the file and set up an HTML FileReader element.\n  const myFile = <HTMLInputElement>document.getElementById(\"file\");\n  const reader = new FileReader();\n\n  reader.onload = (event) => {\n    // Remove the metadata before the Base64-encoded string.\n    const startIndex = reader.result.toString().indexOf(\"base64,\");\n    externalWorkbook = reader.result.toString().substr(startIndex + 7);\n  };\n\n  // Read the file as a data URL so that we can parse the Base64-encoded string.\n  reader.readAsDataURL(myFile.files[0]);\n}\n\nasync function insertSheets() {\n  await Excel.run(async (context) => {\n    // Retrieve the source workbook.\n    const workbook = context.workbook;\n\n    // Set up the insert options.\n    const options = {\n      sheetNamesToInsert: [], // Insert all the worksheets from the source workbook.\n      positionType: Excel.WorksheetPositionType.after, // Insert after the `relativeTo` sheet.\n      relativeTo: \"Sheet1\" // The sheet relative to which the other worksheets will be inserted. Used with `positionType`.\n    };\n\n    // Insert the new worksheets.\n    workbook.insertWorksheetsFromBase64(externalWorkbook, options);\n    await context.sync();\n  });\n}"
 		}
 	]
