@@ -1,8 +1,0 @@
-{
-  "Templates": [
-    {
-      "Description": "Format a table, including set the color of the table header, table body, table row and table column",
-      "SampleCodes": "async function formatTable() {\n  await Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const firstTable = sheet.tables.getItemAt(0);\n\n    // set the table header's color\n    firstTable.getHeaderRowRange().format.fill.color = \"#C70039\";\n    // set the table body's color\n    firstTable.getDataBodyRange().format.fill.color = \"#DAF7A6\";\n    // set the second table row's color\n    firstTable.rows.getItemAt(1).getRange().format.fill.color = \"#FFC300\";\n    // set the first table column's color\n    firstTable.columns.getItemAt(0).getDataBodyRange().format.fill.color = \"#FFA07A\";\n\n    await context.sync();\n  });\n}"
-    }
-  ]
-}

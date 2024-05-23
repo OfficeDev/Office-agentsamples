@@ -1,8 +1,0 @@
-{
-  "Templates": [
-    {
-      "Description": "Filter table data, inlcuding add filter to table and clear table filters.",
-      "SampleCodes": "async function filterTable() {\n  await Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n\n    const firstTable = sheet.tables.getItemAt(0);\n\n    let filter = firstTable.columns.getItemAt(0).filter;\n    filter.apply({\n      filterOn: Excel.FilterOn.dynamic,\n      dynamicCriteria: Excel.DynamicFilterCriteria.belowAverage\n    });\n\n    filter = firstTable.columns.getItemAt(1).filter;\n    filter.apply({\n      filterOn: Excel.FilterOn.values,\n      values: [\"Restaurant\", \"Groceries\"]\n    });\n\n    await context.sync();\n  });\n}\n\nasync function clearFilters() {\n  await Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n\n    const firstTable = sheet.tables.getItemAt(0);\n\n    firstTable.clearFilters();\n\n    await context.sync();\n  });\n}"
-    }
-  ]
-}
