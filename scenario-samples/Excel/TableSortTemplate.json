@@ -1,8 +1,0 @@
-{
-  "Templates": [
-    {
-      "Description": "Sort the data within a table.",
-      "SampleCodes": "async function sortTable() {\n  await Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Sample\");\n    const expensesTable = sheet.tables.getItem(\"ExpensesTable\");\n\n    // sort the table by the \"Amount\" column\n    const sortFields = [\n      {\n        key: 1, // The key for sorting is the second column of the table.\n        ascending: false\n      }\n    ];\n    expensesTable.sort.apply(sortFields);\n\n    await context.sync();\n  });\n}"
-    }
-  ]
-}

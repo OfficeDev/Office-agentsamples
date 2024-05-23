@@ -1,7 +1,7 @@
 {
   "Templates": [
     {
-      "Description": "Gets field's properties, including field code, field result, field type, wether the field is locked, field kind.",
+      "Description": "Get field code, field result, field type, lock field and field kind",
       "SampleCodes": "async function getFieldProperties() {\n  // Gets the first field's properties.\n  await Word.run(async (context) => {\n    const field = context.document.body.fields.getFirstOrNullObject();\n    field.load([\"code\", \"result\", \"locked\", \"type\", \"data\", \"kind\"]);\n\n    await context.sync();\n\n    if (field.isNullObject) {\n      console.log(\"This document has no fields.\");\n    } else {\n      console.log(\n        \"Code of first field: \" + field.code,\n        \"Result of first field: \" + JSON.stringify(field.result),\n        \"Type of first field: \" + field.type,\n        \"Is the first field locked? \" + field.locked,\n        \"Kind of the first field: \" + field.kind\n      );\n    }\n  });\n}\n"
     }
   ]

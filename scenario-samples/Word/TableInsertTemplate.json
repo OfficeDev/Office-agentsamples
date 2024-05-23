@@ -1,8 +1,0 @@
-{
-  "Templates": [
-    {
-      "Description": "Insert a table",
-      "SampleCodes": "async function insertTable() {\n  await Word.run(async (context) => {\n    // Use a two-dimensional array to hold the initial table values.\n    const data = [\n      [\"Tokyo\", \"Beijing\", \"Seattle\"],\n      [\"Apple\", \"Orange\", \"Pineapple\"]\n    ];\n    const table = context.document.body.insertTable(2, 3, \"Start\", data);\n    table.styleBuiltIn = Word.BuiltInStyleName.gridTable5Dark_Accent2;\n    table.styleFirstColumn = false;\n\n    await context.sync();\n  });\n}"
-    }
-  ]
-}

@@ -1,8 +1,0 @@
-{
-	"Templates": [
-		{
-			"Description": "Register an onSelectionChanged event on table, worksheet and worksheets to detect selection changes.",
-			"SampleCodes": "async function registerEventHandlers() {\n  await Excel.run(async (context) => {\n    // Add a selection changed event handler for the table.\n    let table = context.workbook.tables.getItemAt(0);\n    table.onSelectionChanged.add(onTableSelectionChange);\n\n    // Add a selection changed event handler for the worksheet.\n    let sheet = context.workbook.worksheets.getItem(\"Sample\");\n    sheet.onSelectionChanged.add(onWorksheetSelectionChange);\n\n    // Add a selection changed event handler for the worksheet collection.\n    context.workbook.worksheets.onSelectionChanged.add(onWorksheetCollectionSelectionChange);\n\n    await context.sync();\n  });\n}\n\nasync function onTableSelectionChange(args: Excel.TableSelectionChangedEventArgs) {\n  await Excel.run(async (context) => {\n    console.log(`Table event: The address of new selection is: ${args.address}`);\n  });\n}\n\nasync function onWorksheetSelectionChange(args: Excel.WorksheetSelectionChangedEventArgs) {\n  await Excel.run(async (context) => {\n    console.log(`Worksheet event: The address of new selection is: ${args.address}`);\n  });\n}\n\nasync function onWorksheetCollectionSelectionChange(args: Excel.WorksheetSelectionChangedEventArgs) {\n  await Excel.run(async (context) => {\n    console.log(`WorksheetCollection event: The address of new selection is: ${args.address}`);\n  });\n}"
-		}
-	]
-}

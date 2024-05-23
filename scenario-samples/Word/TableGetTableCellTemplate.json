@@ -1,8 +1,0 @@
-{
-  "Templates": [
-    {
-      "Description": "Gets the content of the cell in the table.",
-      "SampleCodes": "async function getTableCell() {\n  // Gets the content of the first cell in the first table.\n  await Word.run(async (context) => {\n    const firstCell = context.document.body.tables.getFirst().getCell(0, 0).body;\n    firstCell.load(\"text\");\n    await context.sync();\n    console.log(\"First cell's text is: \" + firstCell.text);\n  });\n}"
-    }
-  ]
-}

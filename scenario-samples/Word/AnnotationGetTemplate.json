@@ -1,8 +1,0 @@
-{
-  "Templates": [
-    {
-      "Description": "Get annotations.",
-      "SampleCodes": "async function getAnnotations() {\n  // Gets annotations found in the selected paragraph.\n  await Word.run(async (context) => {\n    const paragraph = context.document.getSelection().paragraphs.getFirst();\n    const annotations = paragraph.getAnnotations();\n    annotations.load(\"id,state,critiqueAnnotation\");\n\n    await context.sync();\n\n    console.log(\"Annotations found:\");\n\n    for (let i = 0; i < annotations.items.length; i++) {\n      const annotation = annotations.items[i];\n\n      console.log(`ID ${annotation.id} - state '${annotation.state}':`, annotation.critiqueAnnotation.critique);\n    }\n  });\n}"
-    }
-  ]
-}

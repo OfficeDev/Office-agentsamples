@@ -1,8 +1,0 @@
-{
-	"Templates": [
-		{
-			"Description": "Create and insert a shape;Delete all shapes.",
-			"SampleCodes": "// Create and insert a Hexagon shape into the worksheet\nasync function createHexagon() {\n  await Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getItem(\"Shapes\");\n    const shape = sheet.shapes.addGeometricShape(Excel.GeometricShapeType.hexagon);\n    shape.left = 5;\n    shape.top = 5;\n    shape.height = 175;\n    shape.width = 200;\n    await context.sync();\n  });\n}\n\nasync function deleteAllShapes() {\n  await Excel.run(async (context) => {\n    context.workbook.worksheets.getItemOrNullObject(\"Shapes\").delete();\n    const sheet = context.workbook.worksheets.add(\"Shapes\");\n\n    const shapes = sheet.shapes;\n\n    // load all the shapes in the collection without loading their properties\n    shapes.load(\"items/$none\");\n    await context.sync();\n\n    shapes.items.forEach((shape) => shape.delete());\n    await context.sync();\n  });\n}"
-		}
-	]
-}

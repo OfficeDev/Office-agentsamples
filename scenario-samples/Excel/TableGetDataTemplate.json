@@ -1,8 +1,0 @@
-{
-  "Templates": [
-    {
-      "Description": "Get the table's value; Get table header's value; Get value of a table row; Get value of a table colomn.",
-      "SampleCodes": "async function getTableData() {\n  await Excel.run(async (context) => {\n    const sheet = context.workbook.worksheets.getActiveWorksheet();\n    // Get the first table of the worksheet\n    const fisrtTable = sheet.tables.getItemAt(0);\n\n    // Get the table's header's value of the fisrtTable\n    const headerRange = fisrtTable.getHeaderRowRange().load(\"values\");\n    await sheet.context.sync();\n    const headerValues = headerRange.values;\n    console.log(headerValues);\n\n    // Get the table's value of the fisrtTable\n    const bodyRange = fisrtTable.getDataBodyRange().load(\"values\");\n    await context.sync();\n    const bodyValues = bodyRange.values;\n    console.log(bodyValues);\n\n    // Get the first colomn's value of the fisrtTable\n    const columnRange = fisrtTable.columns\n      .getItemAt(0)\n      .getDataBodyRange()\n      .load(\"values\");\n    await context.sync();\n    const firstColumnValues = columnRange.values;\n    console.log(firstColumnValues);\n\n    // Get the first row's value of the fisrtTable\n    const rowRange = fisrtTable.rows.getItemAt(0).load(\"values\");\n    await context.sync();\n    const firstRowValues = rowRange.values; \n    console.log(firstRowValues);\n  });\n}"
-    }
-  ]
-}
