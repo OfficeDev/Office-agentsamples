@@ -1,0 +1,8 @@
+{
+	"Templates": [
+		{
+			"Description": "Gets and sets font.",
+			"SampleCodes": "async function getFont() {\n  // Gets the number of styles.\n  await Word.run(async (context) => {\n    const bodyFont = context.document.body.font;\n  const rangeFont = context.document.getSelection().font;\n   const tableFont = context.document.body.tables.getFirst().font;\n   const paraFont = context.document.body.paragraphs.getFirst().font;\n    bodyFont.load();\n  rangeFont.load();\n tableFont.load();\n paraFont.load();\n  await context.sync();\n console.log(bodyFont);\n    console.log(rangeFont);\n   console.log(tableFont);\n   console.log(paraFont);\n  });\n}\n\nasync function setFont() {\n  // Gets the number of styles.\n  await Word.run(async (context) => {\n    const font = context.document.body.font;\n  font.bold = true;\n font.color = \"red\";\n await context.sync();\n  });\n}"
+		}
+	]
+}
