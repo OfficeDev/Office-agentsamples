@@ -1,0 +1,8 @@
+{
+  "Templates": [
+    {
+      "Description": "Updates the field.",
+      "SampleCodes": "async function getSelectedFieldAndUpdate() {\n  // Gets and updates the first field in the selection.\n  await Word.run(async (context) => {\n    var field = context.document.getSelection().fields.getFirstOrNullObject();\n    field.load([\"code\", \"result\", \"type\", \"locked\"]);\n\n    await context.sync();\n\n    if (field.isNullObject) {\n      console.log(\"No field in selection.\");\n    } else {\n      console.log(\n        \"Before updating:\",\n        \"Code of first field: \" + field.code,\n        \"Result of first field: \" + JSON.stringify(field.result)\n      );\n\n      field.updateResult();\n      field.select();\n      await context.sync();\n\n      field.load([\"code\", \"result\"]);\n      await context.sync();\n\n      console.log(\n        \"After updating:\",\n        \"Code of first field: \" + field.code,\n        \"Result of first field: \" + JSON.stringify(field.result)\n      );\n    }\n  });\n}"
+    }
+  ]
+}
